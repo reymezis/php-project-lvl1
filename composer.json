@@ -1,0 +1,11 @@
+{
+    "name": "nikolay/php-project1",
+    "description": "brain-games-project",
+    "authors": [
+        {
+            "name": "Reymezis",
+            "email": "qq1s@bk.ru"
+        }
+    ],
+    "require": {}
+}

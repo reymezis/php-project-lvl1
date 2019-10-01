@@ -1,5 +1,6 @@
 {
     "name": "nikolay/php-project1",
+    "bin": ["bin/brain-games"],
     "description": "brain-games-project",
     "authors": [
         {

@@ -1,4 +1,13 @@
 #!/usr/bin/env php
 
 <?php
-    print_r("Welcome to the Brain Games!");
+
+require __DIR__ . '/../vendor/autoload.php';
+use function BrainGames\Cli\run;
+use function cli\line;
+use function cli\prompt;
+
+
+line("Welcome to the Brain Games!");
+$name = prompt('May I have your name?');
+run($name);

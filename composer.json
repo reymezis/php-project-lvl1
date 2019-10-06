@@ -1,6 +1,6 @@
 {
     "name": "nikolay/php-project1",
-    "bin": ["bin/brain-games"],
+    "bin": ["bin/brain-games", "bin/brain-even"],
     "description": "brain-games-project",
     "authors": [
         {
@@ -13,7 +13,8 @@
     },
     "autoload": {
         "files": [
-            "src/cli.php"
+            "src/cli.php",
+            "src/logic.php"
         ]
     },
     "require-dev": {

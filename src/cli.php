@@ -6,5 +6,5 @@ use function cli\line;
 
 function run($name)
 {
-    return line("Hello, %s!", $name);
+    return line("Hello, %s!\n", $name);
 }

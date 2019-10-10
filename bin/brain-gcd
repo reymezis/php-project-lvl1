@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+
+<?php
+
+use function BrainGames\GameGCD\findGCD;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+findGCD();

@@ -8,6 +8,12 @@
         "bin/brain-progression",
         "bin/brain-prime"
     ],
+    "type": "library",
+    "keywords": [
+        "brain-games",
+        "hexlet study project",
+        "mini games"
+    ],
     "description": "brain-games-project",
     "authors": [
         {

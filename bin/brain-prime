@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+
+<?php
+
+use function BrainGames\BrainPrime\runGameIsPrime;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+runGameIsPrime();

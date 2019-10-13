@@ -6,6 +6,19 @@ use function BrainGames\Cli\run;
 use function cli\line;
 use function cli\prompt;
 
+function isPrime($number)
+{
+    for ($i = 2; $i < $number; $i++) {
+        if ($number % $i  == 0) {
+            return "no";
+        }
+        if (($i == $number) || ($i > sqrt($number))) {
+            return "yes";
+        }
+    }
+    return "yes";
+}
+
 function isEven($number)
 {
     $correctAnswer = "";

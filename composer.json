@@ -1,6 +1,13 @@
 {
     "name": "nikolay/php-project1",
-    "bin": ["bin/brain-games", "bin/brain-even", "bin/brain-calc", "bin/brain-gcd", "bin/brain-progression"],
+    "bin": [
+        "bin/brain-games",
+        "bin/brain-even",
+        "bin/brain-calc",
+        "bin/brain-gcd",
+        "bin/brain-progression",
+        "bin/brain-prime"
+    ],
     "description": "brain-games-project",
     "authors": [
         {
@@ -20,7 +27,8 @@
             "src/progression-functions.php",
             "games/brain-calc-profile.php",
             "games/brain-gcd-profile.php",
-            "games/brain-progression-profile.php"
+            "games/brain-progression-profile.php",
+            "games/brain-prime-profile.php"
         ]
     },
     "require-dev": {

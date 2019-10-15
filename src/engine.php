@@ -5,17 +5,6 @@ namespace  BrainGames\engine;
 use function cli\line;
 use function cli\prompt;
 
-
-function generatorNumbers($num)
-{
-    for ($i = 0; $i < $num; $i++) {
-        $array[] = rand(1, 20);
-    }
-    return $array;
-}
-
-
-
 function engine($correct, $exercises, $description)
 {
     line("Welcome to the Brain Games!");

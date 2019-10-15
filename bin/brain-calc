@@ -3,9 +3,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-use function BrainGames\GameCalc\RunGame;
+use function BrainGames\GameCalc\runGameCalc;
 
 
-
-
-RunGame();
+runGameCalc();

@@ -8,7 +8,7 @@
         "bin/brain-progression",
         "bin/brain-prime"
     ],
-    "type": "library",
+    "type": "project",
     "keywords": [
         "brain-games",
         "hexlet study project",
@@ -28,13 +28,14 @@
     "autoload": {
         "files": [
             "src/cli.php",
-            "src/logic.php",
+            "src/support-functions.php",
             "src/engine.php",
             "src/progression-functions.php",
-            "games/brain-calc-profile.php",
-            "games/brain-gcd-profile.php",
-            "games/brain-progression-profile.php",
-            "games/brain-prime-profile.php"
+            "src/games/even.php",
+            "src/games/calc.php",
+            "src/games/gcd.php",
+            "src/games/progression.php",
+            "src/games/prime.php"
         ]
     },
     "require-dev": {

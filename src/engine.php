@@ -2,22 +2,9 @@
 
 namespace  BrainGames\engine;
 
-use function BrainGames\Cli\run;
 use function cli\line;
 use function cli\prompt;
 
-function welcome($greeting)
-{
-    line("Welcome to the Brain Games!");
-    return line("{$greeting}\n");
-}
-
-function sayHi()
-{
-    $userName = prompt('May I have your name?');
-    run($userName);
-    return $userName;
-}
 
 function generatorNumbers($num)
 {
@@ -27,23 +14,16 @@ function generatorNumbers($num)
     return $array;
 }
 
-function getRandomArray($min, $max, $quantity)
-{
-    $numbers = range($min, $max);
-    shuffle($numbers);
-    return array_slice($numbers, 0, $quantity);
-}
 
-function symbolsGenerator()
-{
-    $symbols = [" + "," - "," * "];
-    shuffle($symbols);
-    return $symbols;
-}
 
-function engine($correct, $exercises, $userName)
+function engine($correct, $exercises, $description)
 {
-    for ($j = 0; $j < 3; $j++) {
+    line("Welcome to the Brain Games!");
+    line("{$description}\n");
+    $userName = prompt('May I have your name?');
+    line("Hello, %s!\n", $userName);
+    $roundsQuantity = 3;
+    for ($j = 0; $j < $roundsQuantity; $j++) {
         line("Question: {$exercises[$j]}");
         $userAnswer = prompt("Your answer");
         $correctAnswer = $correct[$j];

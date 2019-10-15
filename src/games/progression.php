@@ -3,8 +3,6 @@
 namespace BrainGames\GameProgression;
 
 use function BrainGames\engine\engine;
-use function BrainGames\engine\welcome;
-use function BrainGames\engine\sayHi;
 use function BrainGames\ProgressionFunctions\getHiddenIndices;
 use function BrainGames\ProgressionFunctions\getInitialConditions;
 use function BrainGames\ProgressionFunctions\getProgressionsAnswer;
@@ -13,13 +11,11 @@ use function BrainGames\ProgressionFunctions\getPureProgressions;
 
 function runGameProgression()
 {
-    $GameRules = "What number is missing in the progression?";
-    welcome($GameRules);
-    $userName = sayHi();
+    $description = "What number is missing in the progression?";
     $initialConditions = getInitialConditions();
-    $initialArray = getPureProgressions($initialConditions);
-    $hideIndeces = getHiddenIndices();
-    $tasks = getProgressionsTask($initialArray, $hideIndeces);
-    $correctAnswer = getProgressionsAnswer($initialArray, $hideIndeces);
-    engine($correctAnswer, $tasks, $userName);
+    $progressions = getPureProgressions($initialConditions);
+    $hiddenIndices = getHiddenIndices();
+    $tasks = getProgressionsTask($progressions, $hiddenIndices);
+    $correctAnswers = getProgressionsAnswer($progressions, $hiddenIndices);
+    engine($correctAnswers, $tasks, $description);
 }

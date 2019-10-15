@@ -4,68 +4,71 @@ namespace BrainGames\ProgressionFunctions;
 
 function getInitialConditions()
 {
-    for ($i = 0; $i < 3; $i++) {
-        $a = rand(1, 100);
-        $step = range(1, 3);
-        $amountArrayElements = 10;
-        switch ($step[$i]) {
+    $amountOfConditions = 3;
+    for ($i = 0; $i < $amountOfConditions; $i++) {
+        $firstNumber = rand(1, 100);
+        $commonDifference = range(1, 3);
+        $amountOfProgressionElements = 10;
+        switch ($commonDifference[$i]) {
             case 1:
-                $n = $a + $amountArrayElements;
+                $lastNumber = $firstNumber + $amountOfProgressionElements;
                 break;
             case 2:
-                $n = $a + $amountArrayElements * 2;
+                $lastNumber = $firstNumber + $amountOfProgressionElements * 2;
                 break;
             case 3:
-                $n = $a + $amountArrayElements * 3;
+                $lastNumber = $firstNumber + $amountOfProgressionElements * 3;
                 break;
         }
-        $initialConditions[$i][0] = $a;
-        $initialConditions[$i][1] = $n;
-        $initialConditions[$i][2] = $step[$i];
+        $initialConditions[$i][0] = $firstNumber;
+        $initialConditions[$i][1] = $lastNumber;
+        $initialConditions[$i][2] = $commonDifference[$i];
     }
     return $initialConditions;
 }
 
-function getPureProgressions($initArr)
+function getPureProgressions($initCondtns)
 {
-    $progressionArray = [[],[],[]];
-    for ($j = 0; $j < 3; $j++) {
-        for ($i = $initArr[$j][0]; $i < $initArr[$j][1]; $i += $initArr[$j][2]) {
-            $progressionArray[$j][] = "{$i}";
+    $progressions = [[],[],[]];
+    $amountOfProgressions = 3;
+    for ($j = 0; $j < $amountOfProgressions; $j++) {
+        for ($i = $initCondtns[$j][0]; $i < $initCondtns[$j][1]; $i += $initCondtns[$j][2]) {
+            $progressions[$j][] = "{$i}";
         }
     }
-    shuffle($progressionArray);
-    return $progressionArray;
+    shuffle($progressions);
+    return $progressions;
 }
 
 function getHiddenIndices()
 {
     $numbers = range(1, 8);
     shuffle($numbers);
-    for ($i = 0; $i < 3; $i++) {
-        $hideIndices[] = $numbers[$i];
+    $amountOfHiddenIndices = 3;
+    for ($i = 0; $i < $amountOfHiddenIndices; $i++) {
+        $hiddenIndices[] = $numbers[$i];
     }
-    return $hideIndices;
+    return $hiddenIndices;
 }
 
-function getProgressionsTask($arr, $hideIndices)
+function getProgressionsTask($progressions, $hideIndices)
 {
-    $replaceArray = $arr;
-    $taskArray = [];
+    $replaceArray = $progressions;
+    $tasks = [];
     for ($i = 0; $i < 3; $i++) {
         $replaceArray[$i][$hideIndices[$i]] = "..";
         $string = implode(" ", $replaceArray[$i]);
-        $taskArray[$i] = $string;
+        $tasks[$i] = $string;
     }
-    return $taskArray;
+    return $tasks;
 }
 
-function getProgressionsAnswer($arr, $hideIndices)
+function getProgressionsAnswer($progressions, $hiddenIndices)
 {
-    $arrayWithKeyAnswers = [];
+    $keyAnswers = [];
     for ($i = 0; $i < 3; $i++) {
-        $replaceValue = $arr[$i][$hideIndices[$i]];
-        $arrayWithKeyAnswers[] = "{$replaceValue}";
+        $replaceValue = $progressions[$i][$hiddenIndices[$i]];
+        $keyAnswers[] = "{$replaceValue}";
     }
-    return $arrayWithKeyAnswers;
+    return $keyAnswers;
 }

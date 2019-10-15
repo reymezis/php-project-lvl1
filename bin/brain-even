@@ -3,9 +3,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-
-use function BrainGames\logic\game;
-
+use function BrainGames\src\games\runGameEven;
 
 
-game();
+runGameEven();

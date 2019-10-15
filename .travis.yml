@@ -2,7 +2,6 @@ language: php
 php:
   - '7.3'
 install:
-  - composer self-update
   - make install
 
 script: make lint

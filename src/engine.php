@@ -11,8 +11,8 @@ function engine($correct, $exercises, $description)
     line("{$description}\n");
     $userName = prompt('May I have your name?');
     line("Hello, %s!\n", $userName);
-    $roundsQuantity = 3;
-    for ($j = 0; $j < $roundsQuantity; $j++) {
+    $attempt = 3;
+    for ($j = 0; $j < $attempt; $j++) {
         line("Question: {$exercises[$j]}");
         $userAnswer = prompt("Your answer");
         $correctAnswer = $correct[$j];
@@ -20,7 +20,8 @@ function engine($correct, $exercises, $description)
             line("Correct!");
         } else {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
-            return line("Let's try again, %s!", $userName);
+            line("Let's try again, %s!", $userName);
+            return;
         }
     }
     return line("Congratulations, %s!\n", $userName);

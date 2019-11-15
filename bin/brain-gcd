@@ -2,8 +2,8 @@
 
 <?php
 
-use function BrainGames\GameGCD\findGCD;
+use function BrainGames\GameGCD\runGameGCD;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-findGCD();
+runGameGCD();

@@ -4,7 +4,12 @@ namespace BrainGames\GameCalc;
 
 use function BrainGames\engine\engine;
 
+use const BrainGames\engine\ROUNDS_COUNT;
+
 const DESCRIPTION = "What is the result of the expression?";
+const MIN = 1;
+const MAX = 20;
+const COUNT_PAIR_NUMBERS = 2 * ROUNDS_COUNT;
 
 function getRandomNumbers($min, $max, $quantity)
 {
@@ -13,11 +18,20 @@ function getRandomNumbers($min, $max, $quantity)
     return array_slice($numbers, 0, $quantity);
 }
 
-function symbolsGenerator()
+function symbolsGenerator($roundsCount)
 {
     $symbols = [" + "," - "," * "];
     shuffle($symbols);
-    return $symbols;
+    $arithmeticOperatorsSet = [];
+    $n = 0;
+    while (count($arithmeticOperatorsSet) < $roundsCount) {
+        if ($n > 2) {
+            $n = 0;
+        }
+        $arithmeticOperatorsSet[] = $symbols[$n];
+        $n++;
+    }
+    return $arithmeticOperatorsSet;
 }
 function taskGenerator($numbers, $symbols)
 {
@@ -59,8 +73,8 @@ function answerGenerator($randomNumbers, $randomSymbols)
 
 function runGameCalc()
 {
-    $randomNumbers = getRandomNumbers(1, 20, 6);
-    $randomSymbols = symbolsGenerator();
+    $randomNumbers = getRandomNumbers(MIN, MAX, COUNT_PAIR_NUMBERS);
+    $randomSymbols = symbolsGenerator(ROUNDS_COUNT);
     $tasks = taskGenerator($randomNumbers, $randomSymbols);
     $correctAnswers = answerGenerator($randomNumbers, $randomSymbols);
     engine($correctAnswers, $tasks, DESCRIPTION);

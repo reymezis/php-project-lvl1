@@ -4,34 +4,38 @@ namespace BrainGames\src\games;
 
 use function BrainGames\engine\engine;
 
-const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
+use const BrainGames\engine\ROUNDS_COUNT;
 
-function getRandomNumbers($min, $max, $quantity)
+const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
+const MIN = 1;
+const MAX = 100;
+
+function getQuestions($min, $max, $roundsCount)
 {
-    $numbers = range($min, $max);
-    shuffle($numbers);
-    return array_slice($numbers, 0, $quantity);
+    $questions = range($min, $max);
+    shuffle($questions);
+    return array_slice($questions, 0, $roundsCount);
 }
 
 function isEven($number)
 {
-    $correctAnswer = "";
-    if ($number % 2 === 0) {
-        $correctAnswer = "yes";
-    } else {
-        $correctAnswer = "no";
-    }
-    return $correctAnswer;
+    return $number % 2 === 0;
+}
+
+function checkQuestion($question)
+{
+    $result = isEven($question) ? "yes" : "no";
+    return $result;
 }
 
 function runGameEven()
 {
-    $tasks = getRandomNumbers(1, 100, 3);
+    $tasks = getQuestions(MIN, MAX, ROUNDS_COUNT);
     function getAnswers($tasks)
     {
         $answers = [];
-        foreach ($tasks as $number) {
-            $answers [] = isEven($number);
+        foreach ($tasks as $question) {
+            $answers [] = checkQuestion($question);
         }
         return $answers;
     }

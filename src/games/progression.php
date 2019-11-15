@@ -4,86 +4,70 @@ namespace BrainGames\GameProgression;
 
 use function BrainGames\engine\engine;
 
+use const BrainGames\engine\ROUNDS_COUNT;
+
 const DESCRIPTION = "What number is missing in the progression?";
 
-function getInitialConditions()
+const PROGRESSION_LENGTH = 10;
+
+function generateProgression($firstElement, $step, $progressionLength)
 {
-    $conditions = 3;
-    for ($i = 0; $i < $conditions; $i++) {
-        $firstElement = rand(1, 100);
-        $commonDifference = range(1, 3);
-        $progressionLength = 10;
-        switch ($commonDifference[$i]) {
-            case 1:
-                $lastElement = $firstElement + $progressionLength;
-                break;
-            case 2:
-                $lastElement = $firstElement + $progressionLength * 2;
-                break;
-            case 3:
-                $lastElement = $firstElement + $progressionLength * 3;
-                break;
-        }
-        $initialConditions[$i][0] = $firstElement;
-        $initialConditions[$i][1] = $lastElement;
-        $initialConditions[$i][2] = $commonDifference[$i];
+    $progression = [];
+    for ($n = 0; $n < $progressionLength; $n++) {
+        $progression[] = $firstElement + $n * $step;
     }
-    return $initialConditions;
+    return $progression;
 }
 
-function getPureProgressions($initCondtns)
+function getPureProgressions($roundsCount)
 {
-    $progressions = [[],[],[]];
-    $amountOfProgressions = 3;
-    for ($j = 0; $j < $amountOfProgressions; $j++) {
-        for ($i = $initCondtns[$j][0]; $i < $initCondtns[$j][1]; $i += $initCondtns[$j][2]) {
-            $progressions[$j][] = "{$i}";
-        }
+    $progressions = [];
+    for ($j = 0; $j < $roundsCount; $j++) {
+        $firstElement = rand(1, 100);
+        $step = rand(1, 4);
+        $progressions[$j] = generateProgression($firstElement, $step, PROGRESSION_LENGTH);
     }
     shuffle($progressions);
     return $progressions;
 }
 
-function getHiddenIndices()
+function getHiddenIndices($roundsCount)
 {
-    $numbers = range(1, 8);
-    shuffle($numbers);
-    $amountOfHiddenIndices = 3;
-    for ($i = 0; $i < $amountOfHiddenIndices; $i++) {
-        $hiddenIndices[] = $numbers[$i];
+    $indices = range(1, 8);
+    shuffle($indices);
+    for ($i = 0; $i < $roundsCount; $i++) {
+        $hiddenIndices[] = $indices[$i];
     }
     return $hiddenIndices;
 }
 
-function getProgressionsTask($progressions, $hideIndices)
+function getQuestions($progressions, $hiddenIndices)
 {
     $replaceArray = $progressions;
     $tasks = [];
-    for ($i = 0; $i < 3; $i++) {
-        $replaceArray[$i][$hideIndices[$i]] = "..";
-        $string = implode(" ", $replaceArray[$i]);
-        $tasks[$i] = $string;
+    for ($i = 0; $i < count($progressions); $i++) {
+        $replaceArray[$i][$hiddenIndices[$i]] = "..";
+        $question = implode(" ", $replaceArray[$i]);
+        $tasks[$i] = $question;
     }
     return $tasks;
 }
 
-function getProgressionsAnswer($progressions, $hiddenIndices)
+function getAnswers($progressions, $hiddenIndices)
 {
     $keyAnswers = [];
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < count($progressions); $i++) {
         $replaceValue = $progressions[$i][$hiddenIndices[$i]];
         $keyAnswers[] = "{$replaceValue}";
     }
     return $keyAnswers;
 }
 
-
 function runGameProgression()
 {
-    $initialConditions = getInitialConditions();
-    $progressions = getPureProgressions($initialConditions);
-    $hiddenIndices = getHiddenIndices();
-    $tasks = getProgressionsTask($progressions, $hiddenIndices);
-    $correctAnswers = getProgressionsAnswer($progressions, $hiddenIndices);
+    $progressions = getPureProgressions(ROUNDS_COUNT);
+    $hiddenIndices = getHiddenIndices(ROUNDS_COUNT);
+    $tasks = getQuestions($progressions, $hiddenIndices);
+    $correctAnswers = getAnswers($progressions, $hiddenIndices);
     engine($correctAnswers, $tasks, DESCRIPTION);
 }

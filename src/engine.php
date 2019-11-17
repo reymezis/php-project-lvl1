@@ -5,7 +5,7 @@ namespace  BrainGames\engine;
 use function cli\line;
 use function cli\prompt;
 
-const ROUNDS_COUNT = 4;
+const ROUNDS_COUNT = 3;
 
 function engine($correct, $exercises, $description)
 {

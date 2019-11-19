@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\GameCalc;
+namespace BrainGames\games\calc;
 
 use function BrainGames\engine\engine;
 

@@ -9,6 +9,7 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
-use function BrainGames\BrainPrime\runGameIsPrime;
+
+use function BrainGames\games\prime\runGameIsPrime;
 
 runGameIsPrime();

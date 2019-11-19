@@ -22,12 +22,6 @@ function isEven($number)
     return $number % 2 === 0;
 }
 
-function checkQuestion($question)
-{
-    $result = isEven($question) ? "yes" : "no";
-    return $result;
-}
-
 function runGameEven()
 {
     $tasks = getQuestions(MIN, MAX, ROUNDS_COUNT);
@@ -35,7 +29,7 @@ function runGameEven()
     {
         $answers = [];
         foreach ($tasks as $question) {
-            $answers [] = checkQuestion($question);
+            $answers [] = isEven($question) ? "yes" : "no";
         }
         return $answers;
     }

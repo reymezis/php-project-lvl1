@@ -30,16 +30,10 @@ function isPrime($num)
     return true;
 }
 
-function checkQuestion($question)
+function getAnswers($tasks)
 {
-    $result = isPrime($question) ? "yes" : "no";
-    return $result;
-}
-
-function getAnswers($numbers)
-{
-    foreach ($numbers as $num) {
-        $answers[] = checkQuestion($num);
+    foreach ($tasks as $question) {
+        $answers[] = isPrime($question) ? "yes" : "no";
     }
     return $answers;
 }

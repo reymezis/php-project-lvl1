@@ -10,56 +10,57 @@ const DESCRIPTION = "What is the result of the expression?";
 const MIN = 1;
 const MAX = 20;
 const COUNT_PAIR_NUMBERS = 2 * ROUNDS_COUNT;
+const SIGNS = [" + "," - "," * "];
 
 function getRandomNumbers($min, $max, $quantity)
 {
-    $numbers = range($min, $max);
-    shuffle($numbers);
-    return array_slice($numbers, 0, $quantity);
+    $operands = range($min, $max);
+    shuffle($operands);
+    return array_slice($operands, 0, $quantity);
 }
 
-function symbolsGenerator($roundsCount)
+function getSigns($roundsCount)
 {
-    $symbols = [" + "," - "," * "];
-    shuffle($symbols);
+    $arithmeticSigns = SIGNS;
+    shuffle($arithmeticSigns);
     $arithmeticOperatorsSet = [];
     $n = 0;
     while (count($arithmeticOperatorsSet) < $roundsCount) {
         if ($n > 2) {
             $n = 0;
         }
-        $arithmeticOperatorsSet[] = $symbols[$n];
+        $arithmeticOperatorsSet[] = $arithmeticSigns[$n];
         $n++;
     }
     return $arithmeticOperatorsSet;
 }
-function taskGenerator($numbers, $symbols)
+function getQuestions($operands, $signs)
 {
-    foreach ($numbers as $str) {
+    foreach ($operands as $str) {
         $result[] = "{$str}";
     }
     $j = 0;
-    for ($i = 0; $i < count($numbers); $i += 2) {
-        $tasks[] = $numbers[$i] . $symbols[$j] . $numbers[$i + 1];
+    for ($i = 0; $i < count($operands); $i += 2) {
+        $tasks[] = $operands[$i] . $signs[$j] . $operands[$i + 1];
         $j++;
     }
     return $tasks;
 }
-function answerGenerator($randomNumbers, $randomSymbols)
+function getAnswers($operands, $signs)
 {
     $result = [];
     $i = 0;
     $j = 0;
-    while ($i < count($randomNumbers)) {
-        switch ($randomSymbols[$j]) {
+    while ($i < count($operands)) {
+        switch ($signs[$j]) {
             case " + ":
-                $result[] = $randomNumbers[$i] + $randomNumbers[$i + 1];
+                $result[] = $operands[$i] + $operands[$i + 1];
                 break;
             case " - ":
-                $result[] = $randomNumbers[$i] - $randomNumbers[$i + 1];
+                $result[] = $operands[$i] - $operands[$i + 1];
                 break;
             case " * ":
-                $result[] = $randomNumbers[$i] * $randomNumbers[$i + 1];
+                $result[] = $operands[$i] * $operands[$i + 1];
                 break;
         }
         $i += 2;
@@ -74,8 +75,8 @@ function answerGenerator($randomNumbers, $randomSymbols)
 function runGameCalc()
 {
     $randomNumbers = getRandomNumbers(MIN, MAX, COUNT_PAIR_NUMBERS);
-    $randomSymbols = symbolsGenerator(ROUNDS_COUNT);
-    $tasks = taskGenerator($randomNumbers, $randomSymbols);
-    $correctAnswers = answerGenerator($randomNumbers, $randomSymbols);
+    $randomSigns = getSigns(ROUNDS_COUNT);
+    $tasks = getQuestions($randomNumbers, $randomSigns);
+    $correctAnswers = getAnswers($randomNumbers, $randomSigns);
     engine($correctAnswers, $tasks, DESCRIPTION);
 }

@@ -22,10 +22,8 @@ function engine($correct, $exercises, $description)
         } else {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
             line("Let's try again, %s!", $userName);
-            break;
-        }
-        if ($j + 1 === ROUNDS_COUNT) {
-            line("Congratulations, %s!\n", $userName);
+            return;
         }
     }
+    line("Congratulations, %s!\n", $userName);
 }

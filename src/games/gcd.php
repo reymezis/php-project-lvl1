@@ -25,7 +25,7 @@ function findGCD($a, $b)
     }
     return findGCD($b, $a % $b);
 }
-function answersGenerator($questions)
+function getAnswers($questions)
 {
     foreach ($questions as $str) {
         $result[] = "{$str}";
@@ -36,7 +36,7 @@ function answersGenerator($questions)
     }
     return $answers;
 }
-function tasksGenerator($questions)
+function getTasks($questions)
 {
     for ($i = 0; $i < count($questions); $i += 2) {
         $tasks[] = "{$questions[$i]} {$questions[$i + 1]}";
@@ -46,7 +46,7 @@ function tasksGenerator($questions)
 function runGameGCD()
 {
     $pairsOfNumbers = getQuestions(MIN, MAX, QUESTIONS_COUNT);
-    $tasks = tasksGenerator($pairsOfNumbers);
-    $correctAnswers = answersGenerator($pairsOfNumbers);
+    $tasks = getTasks($pairsOfNumbers);
+    $correctAnswers = getAnswers($pairsOfNumbers);
     engine($correctAnswers, $tasks, DESCRIPTION);
 }

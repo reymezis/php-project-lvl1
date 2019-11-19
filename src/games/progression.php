@@ -33,7 +33,7 @@ function getPureProgressions($roundsCount)
 
 function getHiddenIndices($roundsCount)
 {
-    $indices = range(1, 8);
+    $indices = range(0, PROGRESSION_LENGTH - 1);
     shuffle($indices);
     for ($i = 0; $i < $roundsCount; $i++) {
         $hiddenIndices[] = $indices[$i];

@@ -12,27 +12,29 @@ const MAX = 100;
 
 function getQuestions($min, $max, $roundsCount)
 {
-    $questions = range($min, $max);
-    shuffle($questions);
-    return array_slice($questions, 0, $roundsCount);
+    for ($i = 0; $i < $roundsCount; $i++) {
+        $questions[] = rand($min, $max);
+    }
+    return $questions;
 }
 
-function isEven($number)
+function isEven($value)
 {
-    return $number % 2 === 0;
+    return $value % 2 === 0;
+}
+
+function getAnswers($tasks)
+{
+    $answers = [];
+    foreach ($tasks as $question) {
+        $answers [] = isEven($question) ? "yes" : "no";
+    }
+    return $answers;
 }
 
 function runGameEven()
 {
     $tasks = getQuestions(MIN, MAX, ROUNDS_COUNT);
-    function getAnswers($tasks)
-    {
-        $answers = [];
-        foreach ($tasks as $question) {
-            $answers [] = isEven($question) ? "yes" : "no";
-        }
-        return $answers;
-    }
     $answers = getAnswers($tasks);
     engine($answers, $tasks, DESCRIPTION);
 }

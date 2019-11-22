@@ -12,18 +12,19 @@ const MAX = 20;
 
 function getQuestions($min, $max, $roundsCount)
 {
-    $questions = range($min, $max);
-    shuffle($questions);
-    return array_slice($questions, 0, $roundsCount);
+    for ($i = 0; $i < $roundsCount; $i++) {
+        $questions[] = rand($min, $max);
+    }
+    return $questions;
 }
 
-function isPrime($num)
+function isPrime($value)
 {
-    if ($num < 2) {
+    if ($value < 2) {
         return false;
     }
-    for ($i = 2; $i <= $num / 2; $i++) {
-        if ($num % $i == 0) {
+    for ($i = 2; $i <= $value / 2; $i++) {
+        if ($value % $i == 0) {
             return false;
         }
     }

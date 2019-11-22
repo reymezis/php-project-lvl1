@@ -9,14 +9,15 @@ use const BrainGames\engine\ROUNDS_COUNT;
 const DESCRIPTION = "What is the result of the expression?";
 const MIN = 1;
 const MAX = 20;
-const COUNT_PAIR_NUMBERS = 2 * ROUNDS_COUNT;
+const OPERANDS_COUNT = 2 * ROUNDS_COUNT;
 const SIGNS = [" + "," - "," * "];
 
-function getRandomNumbers($min, $max, $quantity)
+function getOperands($min, $max, $operandsCount)
 {
-    $operands = range($min, $max);
-    shuffle($operands);
-    return array_slice($operands, 0, $quantity);
+    for ($i = 0; $i < $operandsCount; $i++) {
+        $operands[] = rand($min, $max);
+    }
+    return $operands;
 }
 
 function getSigns($roundsCount)
@@ -74,9 +75,9 @@ function getAnswers($operands, $signs)
 
 function runGameCalc()
 {
-    $randomNumbers = getRandomNumbers(MIN, MAX, COUNT_PAIR_NUMBERS);
-    $randomSigns = getSigns(ROUNDS_COUNT);
-    $tasks = getQuestions($randomNumbers, $randomSigns);
-    $correctAnswers = getAnswers($randomNumbers, $randomSigns);
+    $operands = getOperands(MIN, MAX, OPERANDS_COUNT);
+    $signs = getSigns(ROUNDS_COUNT);
+    $tasks = getQuestions($operands, $signs);
+    $correctAnswers = getAnswers($operands, $signs);
     engine($correctAnswers, $tasks, DESCRIPTION);
 }

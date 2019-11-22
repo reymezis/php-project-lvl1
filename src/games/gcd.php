@@ -9,14 +9,6 @@ use const BrainGames\engine\ROUNDS_COUNT;
 const DESCRIPTION = "Find the greatest common divisor of given numbers.";
 const MIN = 1;
 const MAX = 50;
-const QUESTIONS_COUNT = 2 * ROUNDS_COUNT;
-
-function getQuestions($min, $max, $questionsCount)
-{
-    $questions = range($min, $max);
-    shuffle($questions);
-    return array_slice($questions, 0, $questionsCount);
-}
 
 function findGCD($a, $b)
 {
@@ -27,26 +19,29 @@ function findGCD($a, $b)
 }
 function getAnswers($questions)
 {
-    foreach ($questions as $str) {
-        $result[] = "{$str}";
+    foreach ($questions as $question) {
+        $pairs[] = explode(" ", $question);
     }
-    for ($i = 0; $i < count($questions); $i += 2) {
-        $gcd = findGCD("{$result[$i]}", "{$result[$i + 1]}");
+    $values = array_reduce($pairs, 'array_merge', array());
+    for ($i = 0; $i < count($values); $i += 2) {
+        $gcd = findGCD($values[$i], $values[$i + 1]);
         $answers[] = "$gcd";
     }
     return $answers;
 }
-function getTasks($questions)
+function getTasks($min, $max, $roundsCount)
 {
-    for ($i = 0; $i < count($questions); $i += 2) {
-        $tasks[] = "{$questions[$i]} {$questions[$i + 1]}";
+    for ($i = 0; $i < $roundsCount * 2; $i++) {
+        $values[] = rand($min, $max);
+    }
+    for ($j = 0; $j < $roundsCount * 2; $j += 2) {
+        $tasks[] = "{$values[$j]} {$values[$j + 1]}";
     }
     return $tasks;
 }
 function runGameGCD()
 {
-    $pairsOfNumbers = getQuestions(MIN, MAX, QUESTIONS_COUNT);
-    $tasks = getTasks($pairsOfNumbers);
-    $correctAnswers = getAnswers($pairsOfNumbers);
+    $tasks = getTasks(MIN, MAX, ROUNDS_COUNT);
+    $correctAnswers = getAnswers($tasks);
     engine($correctAnswers, $tasks, DESCRIPTION);
 }

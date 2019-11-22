@@ -37,9 +37,6 @@ function getSigns($roundsCount)
 }
 function getQuestions($operands, $signs)
 {
-    foreach ($operands as $str) {
-        $result[] = "{$str}";
-    }
     $j = 0;
     for ($i = 0; $i < count($operands); $i += 2) {
         $tasks[] = $operands[$i] . $signs[$j] . $operands[$i + 1];

@@ -8,7 +8,7 @@ Small collection of cli mini-games
 ## Installation
 - `composer global require nikolay/php-project1:dev-master`
 
-[![asciicast](https://asciinema.org/a/iQVNLMrdAFiRV30pqRToRbj9U.svg)](https://asciinema.org/a/iQVNLMrdAFiRV30pqRToRbj9U)
+[![asciicast](https://asciinema.org/a/Xof3Dx2MsSONgOdiH2FdseBgD.svg)](https://asciinema.org/a/Xof3Dx2MsSONgOdiH2FdseBgD)
 
 ## How to play
 Start one of the games:

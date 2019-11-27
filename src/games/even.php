@@ -34,7 +34,7 @@ function getAnswers($tasks)
 
 function runGameEven()
 {
-    $tasks = getQuestions(MIN, MAX, ROUNDS_COUNT);
-    $answers = getAnswers($tasks);
-    engine($answers, $tasks, DESCRIPTION);
+    $questions = getQuestions(MIN, MAX, ROUNDS_COUNT);
+    $answers = getAnswers($questions);
+    engine($answers, $questions, DESCRIPTION);
 }

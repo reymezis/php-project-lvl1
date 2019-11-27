@@ -31,16 +31,16 @@ function isPrime($value)
     return true;
 }
 
-function getAnswers($tasks)
+function getAnswers($questions)
 {
-    foreach ($tasks as $question) {
+    foreach ($questions as $question) {
         $answers[] = isPrime($question) ? "yes" : "no";
     }
     return $answers;
 }
 function runGameIsPrime()
 {
-    $tasks = getQuestions(MIN, MAX, ROUNDS_COUNT);
-    $correctAnswers = getAnswers($tasks);
-    engine($correctAnswers, $tasks, DESCRIPTION);
+    $questions = getQuestions(MIN, MAX, ROUNDS_COUNT);
+    $answers = getAnswers($questions);
+    engine($answers, $questions, DESCRIPTION);
 }

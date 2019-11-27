@@ -7,16 +7,16 @@ use function cli\prompt;
 
 const ROUNDS_COUNT = 3;
 
-function engine($correct, $exercises, $description)
+function engine($answers, $questions, $description)
 {
     line("Welcome to the Brain Games!");
     line("{$description}\n");
     $userName = prompt('May I have your name?');
     line("Hello, %s!\n", $userName);
     for ($j = 0; $j < ROUNDS_COUNT; $j++) {
-        line("Question: {$exercises[$j]}");
+        line("Question: {$questions[$j]}");
         $userAnswer = prompt("Your answer");
-        $correctAnswer = $correct[$j];
+        $correctAnswer = $answers[$j];
         if ($correctAnswer === $userAnswer) {
             line("Correct!");
         } else {

@@ -31,43 +31,42 @@ function getPureProgressions($roundsCount)
     return $progressions;
 }
 
-function getHiddenIndices($roundsCount)
+function getHiddenElementIndices($roundsCount)
 {
     $indices = range(0, PROGRESSION_LENGTH - 1);
     shuffle($indices);
     for ($i = 0; $i < $roundsCount; $i++) {
-        $hiddenIndices[] = $indices[$i];
+        $hiddenElementIndices[] = $indices[$i];
     }
-    return $hiddenIndices;
+    return $hiddenElementIndices;
 }
 
-function getQuestions($progressions, $hiddenIndices)
+function getQuestions($progressions, $hiddenElementIndices)
 {
-    $replaceArray = $progressions;
-    $tasks = [];
+    $questions = [];
     for ($i = 0; $i < count($progressions); $i++) {
-        $replaceArray[$i][$hiddenIndices[$i]] = "..";
-        $question = implode(" ", $replaceArray[$i]);
-        $tasks[$i] = $question;
+        $progressions[$i][$hiddenElementIndices[$i]] = "..";
+        $question = implode(" ", $progressions[$i]);
+        $questions[$i] = $question;
     }
-    return $tasks;
+    return $questions;
 }
 
-function getAnswers($progressions, $hiddenIndices)
+function getAnswers($progressions, $hiddenElementIndices)
 {
-    $keyAnswers = [];
+    $answers = [];
     for ($i = 0; $i < count($progressions); $i++) {
-        $replaceValue = $progressions[$i][$hiddenIndices[$i]];
-        $keyAnswers[] = "{$replaceValue}";
+        $answer = $progressions[$i][$hiddenElementIndices[$i]];
+        $answers[] = "{$answer}";
     }
-    return $keyAnswers;
+    return $answers;
 }
 
 function runGameProgression()
 {
     $progressions = getPureProgressions(ROUNDS_COUNT);
-    $hiddenIndices = getHiddenIndices(ROUNDS_COUNT);
-    $tasks = getQuestions($progressions, $hiddenIndices);
-    $correctAnswers = getAnswers($progressions, $hiddenIndices);
-    engine($correctAnswers, $tasks, DESCRIPTION);
+    $hiddenElementIndices = getHiddenElementIndices(ROUNDS_COUNT);
+    $questions = getQuestions($progressions, $hiddenElementIndices);
+    $answers = getAnswers($progressions, $hiddenElementIndices);
+    engine($answers, $questions, DESCRIPTION);
 }

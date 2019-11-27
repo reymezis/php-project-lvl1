@@ -1,19 +1,27 @@
-# php-project1
+# Brain games
 
 [![Build Status](https://travis-ci.org/reymezis/php-project-lvl1.svg?branch=master)](https://travis-ci.org/reymezis/php-project-lvl1)
 [![Maintainability](https://api.codeclimate.com/v1/badges/16ba28fbe4179f7425ec/maintainability)](https://codeclimate.com/github/reymezis/php-project-lvl1/maintainability)
 
-Аскинема brain-even
-https://asciinema.org/a/VAxpSTQECxxN3j9P3xtFK6Sto
+Small collection of cli mini-games 
 
-Аскинема brain-calc
-https://asciinema.org/a/xjN0vXfOCgsnJXWjcgh8kRmSf
+## Installation
+- `composer global require nikolay/php-project1:dev-master`
+[![asciicast](https://asciinema.org/a/iQVNLMrdAFiRV30pqRToRbj9U.svg)](https://asciinema.org/a/iQVNLMrdAFiRV30pqRToRbj9U)
 
-Аскинема brain-gcd
-https://asciinema.org/a/AVvrF26EXRtBZTrDWGeKglPJH
+## How to play
+Start one of the games:
+ - `brain-even`
+[![asciicast](https://asciinema.org/a/41IYAnvoaF1C6aMfgXqEfd7VA.svg)](https://asciinema.org/a/41IYAnvoaF1C6aMfgXqEfd7VA)
 
-Аскинема brain-progression
-https://asciinema.org/a/gXuP0aODUnQhNYqyFbWk4TJty
+- `brain-calc`
+[![asciicast](https://asciinema.org/a/uqilYnITZuD4snOuT9W5caJpR.svg)](https://asciinema.org/a/uqilYnITZuD4snOuT9W5caJpR)
 
-Аскинема brain-prime
-https://asciinema.org/a/eG3YWlcAJl8trNPaDTv80pyj7
+- `brain-gcd`
+[![asciicast](https://asciinema.org/a/caub3yZjCzXoqcSBSJRLmOmR0.svg)](https://asciinema.org/a/caub3yZjCzXoqcSBSJRLmOmR0)
+
+- `brain-progression`
+[![asciicast](https://asciinema.org/a/rhVeFWPa7oKVrguCh5ZdkmsDV.svg)](https://asciinema.org/a/rhVeFWPa7oKVrguCh5ZdkmsDV)
+
+- `brain-prime`
+[![asciicast](https://asciinema.org/a/uKsNvyypGMzSrdsa0eHAMYXj6.svg)](https://asciinema.org/a/uKsNvyypGMzSrdsa0eHAMYXj6)

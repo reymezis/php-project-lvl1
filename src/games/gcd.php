@@ -25,7 +25,7 @@ function getAnswers($questions)
     $elements = array_reduce($values, 'array_merge', array());
     for ($i = 0; $i < count($elements); $i += 2) {
         $gcd = findGCD($elements[$i], $elements[$i + 1]);
-        $answers[] = "{$gcd}";
+        $answers[] = (string) $gcd;
     }
     return $answers;
 }

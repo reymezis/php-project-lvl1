@@ -26,23 +26,21 @@ function getSigns($roundsCount)
 {
     $arithmeticSigns = SIGNS;
     shuffle($arithmeticSigns);
-    $arithmeticOperatorsSet = [];
+    $arithmeticOperators = [];
     $n = 0;
-    while (count($arithmeticOperatorsSet) < $roundsCount) {
+    while (count($arithmeticOperators) < $roundsCount) {
         if ($n > 2) {
             $n = 0;
         }
-        $arithmeticOperatorsSet[] = $arithmeticSigns[$n];
+        $arithmeticOperators[] = $arithmeticSigns[$n];
         $n++;
     }
-    return $arithmeticOperatorsSet;
+    return $arithmeticOperators;
 }
 function getQuestions($operands, $signs)
 {
     foreach ($operands as $index => $values) {
-        $i = 0;
-        $firstOperand = $values[$i];
-        $secondOperand = $values[$i + 1];
+        [$firstOperand, $secondOperand] = $values;
         $questions[] = "{$firstOperand} {$signs[$index]} {$secondOperand}";
     }
     return $questions;
@@ -51,9 +49,7 @@ function getAnswers($operands, $signs)
 {
     $result = [];
     foreach ($operands as $index => $values) {
-        $i = 0;
-        $firstOperand = $values[$i];
-        $secondOperand = $values[$i + 1];
+        [$firstOperand, $secondOperand] = $values;
         switch ($signs[$index]) {
             case "+":
                 $result[] = $firstOperand + $secondOperand;

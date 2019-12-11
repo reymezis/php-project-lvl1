@@ -1,5 +1,6 @@
 {
     "name": "nikolay/php-project1",
+    "license": "MIT",
     "bin": [
         "bin/brain-even",
         "bin/brain-calc",
